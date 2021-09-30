@@ -16,7 +16,7 @@ export default function MovieTable(props) {
       <Table sx={{ minWidth: 450 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell >Title</TableCell>
+            <TableCell>Title</TableCell>
             <TableCell align="left">Gebre</TableCell>
             <TableCell align="center">Stock</TableCell>
             <TableCell align="center">Rate</TableCell>
@@ -35,7 +35,7 @@ export default function MovieTable(props) {
               <TableCell align="left">{movie.genre.name}</TableCell>
               <TableCell align="center">{movie.numberInStock}</TableCell>
               <TableCell align="center">{movie.dailyRentalRate}</TableCell>
-              <TableCell >
+              <TableCell>
                 <Button
                   variant="contained"
                   color="warning"
