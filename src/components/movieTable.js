@@ -7,9 +7,10 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import Like from './like'
 
-export default function MovieTable(props) {
-  const { movies, onDelete } = props
+const MovieTable = (props) => {
+  const { movies, onDelete, onLike } = props
 
   return (
     <TableContainer component={Paper}>
@@ -20,6 +21,7 @@ export default function MovieTable(props) {
             <TableCell align="left">Gebre</TableCell>
             <TableCell align="center">Stock</TableCell>
             <TableCell align="center">Rate</TableCell>
+            <TableCell align="center"></TableCell>
             <TableCell align="center"></TableCell>
           </TableRow>
         </TableHead>
@@ -36,6 +38,9 @@ export default function MovieTable(props) {
               <TableCell align="center">{movie.numberInStock}</TableCell>
               <TableCell align="center">{movie.dailyRentalRate}</TableCell>
               <TableCell>
+                <Like liked={movie.liked} onClick={() => onLike(movie)} />
+              </TableCell>
+              <TableCell>
                 <Button
                   variant="contained"
                   color="warning"
@@ -51,3 +56,5 @@ export default function MovieTable(props) {
     </TableContainer>
   )
 }
+
+export default MovieTable

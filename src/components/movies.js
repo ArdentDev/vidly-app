@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography'
 import MovieTable from './movieTable'
 import { getMovies, deleteMovie } from '../data/fackMovieService'
 
-export default function Movies() {
+const Movies = () => {
   const [movies, setMovies] = useState([])
 
   useEffect(() => {
@@ -16,9 +16,17 @@ export default function Movies() {
   }
 
   const handleDelete = (movieId) => {
-    const del = movies.filter((movie) => movieId !== movie._id)
-    setMovies(del)
+    const newMovies = movies.filter((movie) => movieId !== movie._id)
+    setMovies(newMovies)
     deleteMovie(movieId)
+  }
+
+  const handleLike = (movie) => {
+    const newMovies = [...movies]
+    const index = newMovies.indexOf(movie)
+    newMovies[index] = { ...newMovies[index] }
+    newMovies[index].liked = !newMovies[index].liked
+    setMovies(newMovies)
   }
 
   const { length: count } = movies
@@ -29,7 +37,9 @@ export default function Movies() {
       <Typography variant="h4" component="div" gutterBottom>
         Showing {count} movies in the database.
       </Typography>
-      <MovieTable movies={movies} onDelete={handleDelete} />
+      <MovieTable movies={movies} onDelete={handleDelete} onLike={handleLike} />
     </React.Fragment>
   )
 }
+
+export default Movies
